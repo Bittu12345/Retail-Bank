@@ -1,0 +1,48 @@
+{{errorMessage}}
+<div *ngIf="!isSearched" class="container formContainer card" style="padding:2%">
+    <div class="container" style="padding: 2%;">
+        <h4>Transfer Amount Form</h4>
+    </div>
+    <form  (ngSubmit)="onTransfer()" novalidate>
+       
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Source Id" [(ngModel)]="sourceid" name = "sourceid">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Target Id" [(ngModel)]="targetid" name = "targetid">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Amount" [(ngModel)]="amount" name = "amount">
+        </div>
+        <button type="submit" class="btn btn-primary" click = "onTransfer()">Transfer</button>
+      </form>
+</div>
+<div *ngIf="isSearched">
+    <div class="container">
+        <h4 style="padding: 2%;">Transaction Details</h4>
+        <table class="table table-bordered table-sm table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Source Id</th>
+                    <th>Target Id</th>
+                    <th>Source Previous Balance</th>
+                    <th>Source Current Balance</th>
+                    <th>Target Previous Balance</th>
+                    <th>Target Current Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ t.SourceAccountID }}</td>
+                    <td>{{ t.TargetAccountID }}</td>
+                    <td>{{ t.SourcePrevBalance}}</td>
+                    <td>{{ t.SourceCurrentBalance }}</td>
+                    <td>{{ t.TargetCurrentBalance }}</td>
+                    <td>{{ t.TargetPrevBalance }}</td>
+                    <td>{{ t.Message }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+  

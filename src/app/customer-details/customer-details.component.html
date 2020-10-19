@@ -1,0 +1,32 @@
+<div class="container">
+    <h4>List Of Customers</h4>
+</div>
+
+{{errorMessage}}
+
+<div>
+    <div class="container">
+        <table class="table table-bordered table-sm table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>CustomerSsnId</th>
+                    <th>CustomerId</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customer">
+                    <td class="font-weight-bold">{{ customer.customerSsnId }}</td>
+                    <td>{{ customer.customerId }}</td>
+                    <td>{{ customer.customerName }}</td>
+                    <td>{{ customer.age }}</td>
+                    <td>{{ customer.city }}</td>
+                    <td>{{customer.state}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

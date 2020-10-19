@@ -1,0 +1,59 @@
+<div class="container formContainer">
+    <form *ngIf="!isSearched" [formGroup]="searchForm" (ngSubmit)="onSearch()" novalidate>
+        <div class="form-group">
+            <label>SSN ID</label>
+            <input type="number" class="form-control" formControlName="ssn" placeholder="Enter ssn">
+            <small class="form-text text-muted"
+                *ngIf="searchForm.controls.ssn.touched && searchForm.controls.ssn.hasError('required')">
+                Please enter ssn.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Customer ID</label>
+            <input type="number" class="form-control" formControlName="customerID" placeholder="Enter customer ID">
+            <small class="form-text text-muted"
+                *ngIf="searchForm.controls.customerID.touched && searchForm.controls.customerID.hasError('required')">
+                Please enter customer ID.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Account ID</label>
+            <input type="number" class="form-control" formControlName="accountID" placeholder="Enter account ID">
+            <small class="form-text text-muted"
+                *ngIf="searchForm.controls.accountID.touched && searchForm.controls.accountID.hasError('required')">
+                Please enter account ID.!
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="isSearchDisabled()">Search</button>
+    </form>
+
+    <div *ngIf="isSearched" class="resultContainer">
+
+        <div *ngIf="!searchForm.controls.accountID.value" class="form-group">
+            <label>Accounts</label>
+            <select class="form-control">
+                <option value="">Choose account</option>
+                <option *ngFor="let opt of accounts" [value]="opt">{{opt.name}}</option>
+            </select>
+        </div>
+
+        <div *ngIf="searchForm.controls.accountID.value">
+            <div class="form-group">
+                <label>Customer ID : {{accounts.CustomerID}}</label>
+            </div>
+            <div class="form-group">
+                <label>Account ID : {{accounts.AccountID}}</label>
+            </div>
+            <div class="form-group">
+                <label>Account Type : {{accounts.Type}}</label>
+            </div>
+            <div class="form-group">
+                <label>Balance : {{accounts.Balance}}</label>
+            </div>
+        </div>
+
+    </div>
+</div>

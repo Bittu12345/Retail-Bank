@@ -1,0 +1,28 @@
+<div class="container formContainer">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" novalidate>
+        <div class="form-group">
+            <label>SSN ID</label>
+            <input type="number" class="form-control" formControlName="ssn" placeholder="Enter ssn">
+            <small class="form-text text-muted"
+                *ngIf="searchForm.controls.ssn.touched && searchForm.controls.ssn.hasError('required')">
+                Please enter ssn.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Customer ID</label>
+            <input type="number" class="form-control" formControlName="customerID" placeholder="Enter customer ID">
+            <small class="form-text text-muted"
+                *ngIf="searchForm.controls.customerID.touched && searchForm.controls.customerID.hasError('required')">
+                Please enter customer ID.!
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="isSearchDisabled()">Search</button>
+    </form>
+
+    <div *ngIf="isSearched">
+        <button class="btn btn-primary deleteBtn" (click)="onDelete()">Delete</button>
+    </div>
+
+</div>

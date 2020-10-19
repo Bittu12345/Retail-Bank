@@ -1,0 +1,36 @@
+<div class="container">
+    <h4>Status:</h4>
+</div>
+
+{{errorMessage}}
+
+<div>
+    <div class="container">
+        <table class="table table-bordered table-sm table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>CustomerSsnId</th>
+                    <th>CustomerId</th>
+                    <th>accountId</th>
+                    <th>accountType</th>
+                    <th>Status</th>
+                    <th>Message</th>
+                    <th>Last Updated</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customerStatus">
+                    <td class="font-weight-bold">{{ customer.ssnId }}</td>
+                    <td>{{ customer.customerId }}</td>
+                    <td>{{ customer.accountId }}</td>
+                    <td>{{ customer.accountType }}</td>
+                    <td>{{ customer.status1 }}</td>
+                    <td>{{customer.message}}</td>
+                    <td>{{customer.lastUpdated}}</td>
+                    <td>{{customer.balance}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

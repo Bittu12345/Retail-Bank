@@ -1,0 +1,70 @@
+<div class="container formContainer">
+    <form *ngIf="!isSearched" [formGroup]="searchForm" (ngSubmit)="onSearch()" novalidate>
+  
+        <div class="form-group">
+            <label>Account ID</label>
+            <input type="number" class="form-control" formControlName="accountID" placeholder="Enter account ID">
+            <small class="form-text text-muted"
+                *ngIf="searchForm.controls.accountID.touched && searchForm.controls.accountID.hasError('required')">
+                Please enter account ID.!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Accounts</label>
+            <select class="form-control" formControlName="lastTransaction">
+                <option value="">Choose account</option>
+                <option *ngFor="let opt of options" [value]="opt">{{opt}}</option>
+            </select>
+            <small class="form-text text-muted"
+            *ngIf="searchForm.controls.lastTransaction.touched && searchForm.controls.lastTransaction.hasError('required')">
+            Please select last Transaction.!
+        </small>
+        </div>
+  
+        <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" class="form-control" formControlName="startDate" >
+            <small class="form-text text-muted"
+                *ngIf="searchForm.controls.startDate.touched && searchForm.controls.startDate.hasError('required')">
+                Please enter account ID.!
+            </small>
+        </div>
+  
+        <div class="form-group">
+            <label>End date</label>
+            <input type="date" class="form-control" formControlName="endDate" >
+            <small class="form-text text-muted"
+                *ngIf="searchForm.controls.endDate.touched && searchForm.controls.endDate.hasError('required')">
+                Please enter end date.!
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="isSearchDisabled()">Search</button>
+    </form>
+</div>
+
+<div *ngIf="isSearched" class="resultContainer">
+
+    <div class="tableContainer">
+        <table class="table table-bordered table-striped table-hover">
+    
+            <thead class="thead-dark">
+                <tr>
+                    <th *ngFor="let column of headers">
+                        {{column}}
+                    </th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr *ngFor="let row of rows">
+                    <td *ngFor="let column of headers">
+                        {{row[column]}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

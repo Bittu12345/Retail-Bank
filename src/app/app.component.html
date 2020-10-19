@@ -1,0 +1,25 @@
+<div>
+ 
+  <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/allcustomers" *ngIf = "isAdmin">Home</a>
+        <a  class="nav-item nav-link" routerLink="/createcustomer" *ngIf = "isAdmin">Add Customer</a>
+        <a class="nav-item nav-link" routerLink="/viewcustomer"  *ngIf = "isAdmin">Get Customer Status</a>
+        <a class="nav-item nav-link" routerLink="/updatecustomer"  *ngIf = "isAdmin">Update/Delete Customer</a>
+        <a class="nav-item nav-link" routerLink="/createaccount"  *ngIf = "isAdmin">Create Account</a>
+
+        <a class="nav-item nav-link" routerLink="/accountdetails"  *ngIf = "isCashier">AccountInformation</a>
+        <a class="nav-item nav-link" routerLink="/withdraw"  *ngIf = "isCashier">Withdraw</a>
+        <a class="nav-item nav-link" routerLink="/deposit"  *ngIf = "isCashier">Deposit</a>
+        <a class="nav-item nav-link" routerLink="/transfer"  *ngIf = "isCashier">Transfer</a>
+        <a class="nav-item nav-link" routerLink="/statements"  *ngIf = "isCashier">Statements</a>
+       
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
+  
+    <div class="container mt-3">
+      
+      <router-outlet></router-outlet>
+    </div>
+  </div>

@@ -1,0 +1,43 @@
+<div class="container col-md-12 text-center">
+    <h4>Account Details</h4>
+</div>
+{{errorMessage}}
+<div>
+<div *ngIf ="!isSearched" class="container">
+    <div>
+        <form class="col-md-4 text-center">
+            <div class="input-group" style="padding: 2%;">
+                <input type="text" class="form-control" placeholder="Enter Customer Id" [(ngModel)]="id" name = "id">
+                <div class="input-group-btn">
+                <button class="btn btn-primary" (click)="getAccountDetailsById()" type="submit">
+                    <i class="glyphicon glyphicon-search"></i> Search
+                </button>
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<div *ngIf="isSearched">
+    <div class="container col-md-12">
+        <table class="table table-bordered table-sm table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>CustomerId</th>
+                    <th>AccountId</th>
+                    <th>AccountType</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let a of account">
+                    
+                    <td class="font-weight-bold">{{ a.customerId }}</td>
+                    <td>{{ a.accountId }}</td>
+                    <td>{{ a.accountType }}</td>
+                    <td>{{ a.balance }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

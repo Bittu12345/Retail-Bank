@@ -1,0 +1,90 @@
+
+<div class="container formContainer">
+    <form *ngIf="!isSearched" [formGroup]="searchForm" (ngSubmit)="onSearch()" novalidate>
+        <div class="form-group">
+            <label>SSN ID</label>
+            <input type="number" class="form-control" formControlName="ssn" placeholder="Enter ssn">
+            <small class="form-text text-muted"
+                *ngIf="searchForm.controls.ssn.touched && searchForm.controls.ssn.hasError('required')">
+                Please enter ssn.!
+            </small>
+        </div>
+
+    
+
+        <button type="submit" class="btn btn-primary" [disabled]="isSearchDisabled()">Search</button>
+    </form>
+
+    <form  #myForm="ngForm" *ngIf="currentCustomer">
+        <h4 >{{currentCustomer.customerName}} - Details</h4>
+        <div class="form-group">
+            <label for="customerSsnId">Title</label>
+            <input type="text" class="form-control" id="SSN" [(ngModel)]="currentCustomer.customerSsnId" name="customerSsnId"
+                disabled ngModel name="customerSsnId" #customerSsnId="ngModel" />
+        </div>
+
+        <div class="form-group">
+            <label for="customerID">customerID</label>
+            <input type="text" class="form-control" id="customerID" [(ngModel)]="currentCustomer.customerId" name="customerId"
+                disabled ngModel name="customerId" #customerId="ngModel" />
+        </div>
+
+        <div class="form-group">
+            <label for="customer name">Name</label>
+            <input type="text" class="form-control" id="customername" [(ngModel)]="currentCustomer.customerName" name="customerName"
+                 ngModel name="customerName" #customerName="ngModel" />
+        </div>
+
+        <div class="form-group">
+            <label for="customer address">Address</label>
+            <input type="text" class="form-control" id="addressLine1" [(ngModel)]="currentCustomer.addressLine1" name="addressLine1"
+                 ngModel name="addressLine1" #addressLine1="ngModel" />
+        </div>
+
+        <div class="form-group">
+            <label for="customer address2">Address Line2</label>
+            <input type="text" class="form-control" id="addressLine2" [(ngModel)]="currentCustomer.addressLine2" name="addressLine1"
+                 ngModel name="addressLine2" #addressLine1="ngModel" />
+        </div>
+
+        <div class="form-group">
+            <label for="customer Age">Age</label>
+            <input type="text" class="form-control" id="age" [(ngModel)]="currentCustomer.age" name="age"
+                 ngModel name="age" #age="ngModel" />
+        </div>
+
+        <button type="submit" class="btn btn-primary"[disabled]="!myForm.form.valid" (click)="onUpdate()">Update</button>
+        <button class="btn btn-danger" (click)="deleteCustomer()">
+            Delete
+          </button>
+    </form>
+</div>
+
+<div *ngIf="message">
+    <hr>
+    <p class="alert alert-success"> Success! {{ message }}</p>
+    <button class="btn btn-primary" [routerLink]="['/allcustomers']">Go back</button>
+</div>
+<div *ngIf="updateErrorMessage">
+    <hr>
+    <p class="alert alert-danger">
+        Status : {{updateErrorMessage.status}} Cannot Update this
+        customer</p>
+</div>
+<div *ngIf="getCustomerErrorMessage">
+    <hr>
+    <p class="alert alert-danger">
+        Status : {{getCustomerErrorMessage.status}} Cannot search this
+        customer</p>
+    <button class="btn btn-primary" [routerLink]="['/allcustomers']">Go back</button>
+</div>
+
+<div *ngIf="deleteErrorMessage">
+    <hr>
+    <p class="alert alert-danger">
+        Status : {{deleteErrorMessage.status}} Cannot delete this
+        customer</p>
+    <button class="btn btn-primary" [routerLink]="['/allcustomers']">Go back</button>
+</div>
+
+  

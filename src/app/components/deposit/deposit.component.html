@@ -1,0 +1,45 @@
+{{errorMessage}}
+<div *ngIf="!isSearched" class="container formContainer card" style="padding:2%">
+    <div class="container" style="padding: 2%;">
+        <h4>Deposit Form</h4>
+    </div>
+    <form  (ngSubmit)="onDeposit()" novalidate>
+       
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Customer Id" [(ngModel)]="id" name = "id">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Amount" [(ngModel)]="amount" name = "amount">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Account Type (Checking or Saving)" [(ngModel)]="accounttype" name = "accounttype">
+        </div>
+        <button type="submit" class="btn btn-primary" click = "onDeposit()">Deposit</button>
+      </form>
+</div>
+<div *ngIf="isSearched">
+    <div class="container">
+        <h4 style="padding: 2%;">Transaction Details</h4>
+        <table class="table table-bordered table-sm table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>CustomerId</th>
+                    <th>AccountId</th>
+                    <th>Previous Balance</th>
+                    <th>Current Balance</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="">{{ withdraw.customerID}}</td>
+                    <td>{{ withdraw.accountID }}</td>
+                    <td>{{  withdraw.prevBalance }}</td>
+                    <td>{{  withdraw.currentBalance }}</td>
+                    <td>{{ withdraw.date  }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+  
